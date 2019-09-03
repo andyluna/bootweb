@@ -20,7 +20,7 @@ import java.util.Random;
  * @NAME : bootweb com.dtxytech.boot.repository.lock
  * @auth : andy/xiangdan@dtxysoft.com
  * @TIME : 2019/9/3 九月 11:50
- * @DESC :
+ * @DESC : 测试悲观锁 乐观锁
  */
 @Slf4j
 @RunWith(SpringRunner.class)

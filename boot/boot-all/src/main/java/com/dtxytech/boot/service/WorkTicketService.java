@@ -95,17 +95,17 @@ public interface WorkTicketService {
     /**
      * 16. 查询部分字段 返回map类型
      */
-    List<Map> findByHql16(String content, String mainId );
+    List<Map<String,Object>> findByHql16(String content, String mainId );
 
     /**
      * 17. 查询部分字段 返回map类型
      */
-    List<Map> findByHql17(String content, String mainId );
+    List<Map<Integer,Object>> findByHql17(String content, String mainId );
 
     /**
      * 18. 查询部分字段 返回map类型
      */
-    List<Map> findByHql18(String content, String mainId );
+    List<Map<String,Object>> findByHql18(String content, String mainId );
 
     /**
      * 19. 查询部分字段 返回自定义接口

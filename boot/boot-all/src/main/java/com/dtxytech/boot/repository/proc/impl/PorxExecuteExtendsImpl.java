@@ -37,9 +37,10 @@ public class PorxExecuteExtendsImpl implements PorxExecuteExtends {
         return result.toString();
     }
 
+    @SuppressWarnings({"unchecked"})
     @Override
     public String executeProcSayHello3() {
-        org.hibernate.query.NativeQuery query1 = getSession().createNativeQuery("{call proc_2_sayhello()}");
+        org.hibernate.query.NativeQuery<String> query1 = getSession().createNativeQuery("{call proc_2_sayhello()}");
         Object result1 = query1.getSingleResult();
         return result1.toString();
     }

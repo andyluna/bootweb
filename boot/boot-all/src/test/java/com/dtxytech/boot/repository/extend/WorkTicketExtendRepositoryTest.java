@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @NAME : bootweb com.dtxytech.boot.repository.extend
  * @auth : andy/xiangdan@dtxysoft.com
  * @TIME : 2019/8/31 八月 19:39
- * @DESC :
+ * @DESC : 测试 spring-data-jpa 自定义方法扩展
  */
 @Slf4j
 @RunWith(SpringRunner.class)

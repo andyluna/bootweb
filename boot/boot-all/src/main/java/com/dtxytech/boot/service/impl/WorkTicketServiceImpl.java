@@ -112,15 +112,15 @@ public class WorkTicketServiceImpl implements WorkTicketService {
     }
 
     @Override
-    public List<Map> findByHql16(String content, String mainId) {
+    public List<Map<String,Object>> findByHql16(String content, String mainId) {
         return wtRepository.findByHql16(content,mainId);
     }
     @Override
-    public List<Map> findByHql17(String content, String mainId) {
+    public List<Map<Integer,Object>> findByHql17(String content, String mainId) {
         return wtRepository.findByHql17(content,mainId);
     }
     @Override
-    public List<Map> findByHql18(String content, String mainId) {
+    public List<Map<String,Object>> findByHql18(String content, String mainId) {
         return wtRepository.findByHql18(content,mainId);
     }
 

@@ -16,6 +16,7 @@ import javax.persistence.criteria.Root;
  * @TIME : 2019/8/30 八月 20:43
  * @DESC :
  */
+@SuppressWarnings({"rawtypes","unchecked"})
 public class ExampleSpecification <T> implements Specification<T> {
     private static final long serialVersionUID = 350168992673426126L;
     private final Example<T> example;
@@ -26,10 +27,7 @@ public class ExampleSpecification <T> implements Specification<T> {
         this.example = example;
     }
 
-    /*
-     * (non-Javadoc)
-     * @see org.springframework.data.jpa.domain.Specification#toPredicate(javax.persistence.criteria.Root, javax.persistence.criteria.CriteriaQuery, javax.persistence.criteria.CriteriaBuilder)
-     */
+
     @Override
     public Predicate toPredicate(Root<T> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
         return QueryByExamplePredicateBuilder.getPredicate(root, cb, example);

@@ -18,9 +18,7 @@ public class BootAllApplication {
     public static void main(String[] args){
         ConfigurableApplicationContext context = SpringApplication.run(BootAllApplication.class, args);
         String[] names = context.getBeanDefinitionNames();
-        for (int i=0;i<names.length;i++) {
-            logger.info("{}.{}={}",i+1,names[i],context.getBean(names[i]));
-        }
+        logger.info("BootAllApplication启动成功 总共有 {} 个bean",names.length);
 
     }
 

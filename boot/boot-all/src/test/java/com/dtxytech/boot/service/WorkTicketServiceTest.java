@@ -23,7 +23,7 @@ import java.util.concurrent.Future;
  * @NAME : bootweb com.dtxytech.boot.service
  * @auth : andy/xiangdan@dtxysoft.com
  * @TIME : 2019/8/30 八月 21:34
- * @DESC :
+ * @DESC : 测试spring-data-jpa规范  支持的 方法
  */
 @Slf4j
 @RunWith(SpringRunner.class)
@@ -198,7 +198,7 @@ public class WorkTicketServiceTest {
     @Test
     @Transactional
     public void findByHql16(){
-        List<Map> list = wtService.findByHql16("测试%", "mainId%");
+        List<Map<String,Object>> list = wtService.findByHql16("测试%", "mainId%");
         log.debug("查询成功:{} ",list.size());
         list.forEach(o->{
             log.debug("class = {} , ",o.getClass() );
@@ -210,7 +210,7 @@ public class WorkTicketServiceTest {
     @Test
     @Transactional
     public void findByHql17(){
-        List<Map> list = wtService.findByHql17("测试%", "mainId%");
+        List<Map<Integer,Object>> list = wtService.findByHql17("测试%", "mainId%");
         log.debug("查询成功:{} ",list.size());
         list.forEach(o->{
             log.debug("class = {} , ",o.getClass() );
@@ -222,7 +222,7 @@ public class WorkTicketServiceTest {
     @Test
     @Transactional
     public void findByHql18(){
-        List<Map> list = wtService.findByHql18("测试%", "mainId%");
+        List<Map<String,Object>> list = wtService.findByHql18("测试%", "mainId%");
         log.debug("查询成功:{} ",list.size());
         list.forEach(o->{
             log.debug("class = {} , ",o.getClass() );

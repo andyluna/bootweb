@@ -21,6 +21,7 @@ import java.util.stream.Stream;
  * @TIME : 2019/8/30 八月 20:39
  * @DESC : Example查询匹配器 工具类
  */
+@SuppressWarnings({"rawtypes","unchecked"})
 public class ExampleUtils {
 
     private static Logger logger = LoggerFactory.getLogger(ExampleUtils.class);
@@ -72,12 +73,11 @@ public class ExampleUtils {
     public static <T> Specification<T> findAllSpecification(T t,ExampleMatcher.StringMatcher stringMatcher,String ... ignorePaths){
         Specification spec = (Specification<T>) (root, query, cb) -> {
             Field[] fields = t.getClass().getDeclaredFields();
-            List<Predicate> list = new ArrayList<Predicate>();
+            List<Predicate> list = new ArrayList<>();
             for (Field field:fields){
                 if(ignorePaths==null || Stream.of(ignorePaths).anyMatch(p->p.equals(field.getName()))){
                     continue;
                 }
-
                 try{
                     PropertyDescriptor pd = new PropertyDescriptor(field.getName(),t.getClass());
                     Object value = pd.getReadMethod().invoke(t);
@@ -85,7 +85,6 @@ public class ExampleUtils {
                         if(field.getType().equals(String.class)){
                             String va = value.toString();
                             if(StringUtils.hasText(va)){
-                                //Predicate p = null;
                                 switch (stringMatcher){
                                     case DEFAULT:
                                     case EXACT:
@@ -103,9 +102,6 @@ public class ExampleUtils {
                                     default:
                                         break;
                                 }
-                               // p = cb.like(root.get(field.getName()),StringUtils.trimWhitespace(va)+"%");
-
-                                //list.add(p);
                             }
                         }else{
                             list.add(cb.equal(root.get(field.getName()),value));

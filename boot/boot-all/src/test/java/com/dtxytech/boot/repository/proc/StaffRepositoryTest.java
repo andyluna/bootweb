@@ -21,7 +21,7 @@ import java.util.Random;
  * @NAME : bootweb com.dtxytech.boot.repository.proc
  * @auth : andy/xiangdan@dtxysoft.com
  * @TIME : 2019/9/2 九月 10:50
- * @DESC :
+ * @DESC : 测试存储过程
  */
 @Slf4j
 @RunWith(SpringRunner.class)

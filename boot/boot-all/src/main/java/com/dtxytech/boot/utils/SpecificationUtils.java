@@ -3,7 +3,6 @@ package com.dtxytech.boot.utils;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.jpa.domain.Specification;
-import org.springframework.util.Assert;
 
 import javax.persistence.criteria.Predicate;
 import java.lang.reflect.Field;
@@ -18,18 +17,16 @@ import java.util.Set;
  * @TIME : 2019/8/30 八月 20:41
  * @DESC :
  */
+@SuppressWarnings({"rawtypes","unchecked"})
 public class SpecificationUtils extends ExampleUtils{
 
 
-    public static <T> Specification getExactSpec(
-            Class<T> domainClass, String property, Object value){
-        Assert.notNull(domainClass, "domainClass must not be null");
+    public static <T> Specification getExactSpec( Class<T> domainClass, String property, Object value){
         return (Specification<T>) (root, query, cb) -> cb.equal(root.get(property), value);
     }
 
     public static <T> Specification getExactSpec(
             Class<T> domainClass, Map<String,Object> param){
-        Assert.notNull(domainClass, "domainClass must not be null");
         if (param == null || param.size() == 0) {
             return null;
         }

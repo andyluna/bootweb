@@ -207,7 +207,7 @@ public interface WorkTicketRepository  {
      * @return
      */
     @Query("select  id,content,mainId from WorkTicket where content like :content and mainId like :mainId order by id asc")
-    List<Map> findByHql16(@Param("content") String content, @Param("mainId") String mainId );
+    List<Map<String,Object>> findByHql16(@Param("content") String content, @Param("mainId") String mainId );
 
 
     /**
@@ -217,7 +217,7 @@ public interface WorkTicketRepository  {
      * @return
      */
     @Query("select  new map(id,content,mainId) from WorkTicket where content like :content and mainId like :mainId order by id asc")
-    List<Map> findByHql17(@Param("content") String content, @Param("mainId") String mainId );
+    List<Map<Integer,Object>> findByHql17(@Param("content") String content, @Param("mainId") String mainId );
 
 
     /**
@@ -228,7 +228,7 @@ public interface WorkTicketRepository  {
      */
     @Query("select  new map(id as id ,content as content,mainId as manId) from  " +
             "WorkTicket where content like :content and mainId like :mainId order by id asc")
-    List<Map> findByHql18(@Param("content") String content, @Param("mainId") String mainId );
+    List<Map<String,Object>> findByHql18(@Param("content") String content, @Param("mainId") String mainId );
 
 
 

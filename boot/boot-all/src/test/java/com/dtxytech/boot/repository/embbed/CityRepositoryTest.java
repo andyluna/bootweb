@@ -22,7 +22,7 @@ import java.util.List;
  * @NAME : bootweb com.dtxytech.boot.repository.embbed
  * @auth : andy/xiangdan@dtxysoft.com
  * @TIME : 2019/8/31 八月 16:58
- * @DESC :
+ * @DESC : 内嵌 继承
  */
 @Slf4j
 @RunWith(SpringRunner.class)

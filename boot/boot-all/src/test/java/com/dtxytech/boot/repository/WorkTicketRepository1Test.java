@@ -19,7 +19,7 @@ import java.util.List;
  * @NAME : bootweb com.dtxytech.boot.repository
  * @auth : andy/xiangdan@dtxysoft.com
  * @TIME : 2019/8/31 八月 21:38
- * @DESC :
+ * @DESC : 测试 springdata-jpa 使用spel高级特性 以及  修改 删除  自定义分页查询
  */
 @Slf4j
 @RunWith(SpringRunner.class)

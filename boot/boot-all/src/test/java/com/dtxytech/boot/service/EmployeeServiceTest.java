@@ -26,7 +26,7 @@ import java.util.Optional;
  * @NAME : bootweb com.dtxytech.boot.service
  * @auth : andy/xiangdan@dtxysoft.com
  * @TIME : 2019/8/30 八月 10:50
- * @DESC :
+ * @DESC : 测试 Springdata-jpa 默认方法
  */
 @Slf4j
 @RunWith(SpringRunner.class)

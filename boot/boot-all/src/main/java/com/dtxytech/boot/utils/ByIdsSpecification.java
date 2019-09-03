@@ -17,8 +17,9 @@ import javax.persistence.criteria.Root;
  * @TIME : 2019/8/30 八月 20:42
  * @DESC :
  */
+@SuppressWarnings({"rawtypes","unchecked"})
 public class ByIdsSpecification<T> implements Specification<T> {
-
+    private static final long serialVersionUID = -8298854426547208032L;
     private final JpaEntityInformation<T, ?> entityInformation;
 
     @Nullable
@@ -28,10 +29,6 @@ public class ByIdsSpecification<T> implements Specification<T> {
         this.entityInformation = entityInformation;
     }
 
-    /*
-     * (non-Javadoc)
-     * @see org.springframework.data.jpa.domain.Specification#toPredicate(javax.persistence.criteria.Root, javax.persistence.criteria.CriteriaQuery, javax.persistence.criteria.CriteriaBuilder)
-     */
     @Override
     public Predicate toPredicate(Root<T> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
 
