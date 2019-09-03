@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
+             http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+             version="2.0">
+    <!-- 持久化单元块 -->
+    <persistence-unit name="myJpa" transaction-type="RESOURCE_LOCAL">
+        <!--如果配有配置provider,默认去 jar包中寻找 META-INF/services/javax/persistence.spi.PersistenceProvider-->
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <!-- 数据库连接信息
+                 使用hibernate提供的 在hibernate的源码包下project/etc/hibernate.properties
+         -->
+        <properties>
+            <!-- 必须配置 -->
+            <property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/hibernate"/>
+            <property name="hibernate.connection.username" value="hibernate"/>
+            <property name="hibernate.connection.password" value="hibernate"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect"/><!-- 方言：数据库提供商对SQL的扩展 -->
+            <!-- 可选配置 -->
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+            <!-- DDL语句生成策略 update的含义：当程序运行会自动检测实体类和数据库的表结构是否有差异，一旦有会立即更新表结构 -->
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <!-- c3p0连接池信息
+            <property name="hibernate.connection.provider_class" value="org.hibernate.connection.C3P0ConnectionProvider"/>
+             -->
+        </properties>
+
+    </persistence-unit>
+</persistence>

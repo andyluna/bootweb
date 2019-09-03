@@ -11,6 +11,11 @@
 
     <groupId>com.andy.spring</groupId>
     <artifactId>spring</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>hibernate01</module>
+        <module>hibernate02-jpa</module>
+    </modules>
 
 
 </project>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.andy.hibernate.xml.onetomany.entity">
+    <class name="Order" table="t_xml_order">
+        <!-- 主键 -->
+        <id name="id" column="c_id">
+            <generator class="native"></generator>
+        </id>
+        <!-- 其他属性 -->
+        <property name="orderName"   column="c_ordername"></property>
+        <property name="productName" column="c_productname"></property>
+        <property name="createDate"  column="c_createDate"></property>
+        <!-- 多对一配置 -->
+        <many-to-one name="customer" class="Customer" column="c_customer_id" cascade="all"/>
+    </class>
+
+
+</hibernate-mapping>

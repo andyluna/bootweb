@@ -11,6 +11,11 @@
     <packaging>pom</packaging>
     <modules>
         <module>boot-all</module>
+        <module>boot-mail</module>
+        <module>boot-actuator</module>
+        <module>boot-socket</module>
+        <module>boot-cache</module>
+        <module>boot-jpa</module>
     </modules>
     <groupId>com.andy.boot</groupId>
     <artifactId>boot</artifactId>
@@ -33,6 +38,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
+            <version>${spring-boot.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -43,6 +49,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring-boot.version}</version>
             </plugin>
 
         </plugins>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory >
+        <!-- 配置连接数据库的基本信息 -->
+        <property name="connection.username">hibernate</property>
+        <property name="connection.password">hibernate</property>
+        <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name="connection.url">jdbc:mysql://localhost:3306/hibernate</property>
+
+        <!-- 配置 hibernate 的基本信息 -->
+        <!-- hibernate 所使用的数据库方言 -->
+        <property name="dialect">org.hibernate.dialect.MySQL8Dialect</property>
+
+        <!-- 执行操作时是否在控制台打印 SQL -->
+        <property name="show_sql">true</property>
+        <!-- 是否对 SQL 进行格式化 -->
+        <property name="format_sql">true</property>
+        <!-- 指定自动生成数据表的策略 -->
+        <property name="hbm2ddl.auto">update</property>
+
+
+
+        <!-- Hibernate整合Ehache实现二级缓存 -->
+        <!-- 开启Hibernate的二级缓存 -->
+        <property name="hibernate.cache.use_second_level_cache">true</property>
+        <!-- 引入EhCache的工具 -->
+        <property name="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.internal.EhcacheRegionFactory</property>
+        <!-- 开启查询缓存 -->
+        <property name="hibernate.cache.use_query_cache">true</property>
+
+        <mapping  resource="com/andy/hibernate/xml/onetomany/entity/Customer.hbm.xml" />
+        <mapping  resource="com/andy/hibernate/xml/onetomany/entity/Order.hbm.xml" />
+
+
+
+        <!-- 指定哪些类要加入二级缓存 -->
+        <class-cache usage="read-only"  class="com.andy.hibernate.xml.onetomany.entity.Customer"/>
+        <class-cache usage="read-write" class="com.andy.hibernate.xml.onetomany.entity.Order"/>
+
+    </session-factory>
+
+</hibernate-configuration>

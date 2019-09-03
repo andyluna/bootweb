@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+	<property name="applicationName" value="hibernate" />
+	<property name="log.base" value="logs" />
+	<property name="log.filepath" value="target/iip-base/logback" />
+	<contextName>${applicationName}</contextName>
+
+	<!-- 控制台输出 -->
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+			<layout class="ch.qos.logback.classic.PatternLayout">
+				<pattern>%yellow([${applicationName}]) %blue(%d{yyyy-MM-dd HH:mm:ss.SSS}) %magenta([%12.12t]) %cyan(%-40.40logger{39}) %green(%-3.3L) %highlight(%-5p): %msg%n</pattern>
+			</layout>
+		</encoder>
+	</appender>
+
+	<root>
+		<level value="INFO" />
+		<appender-ref ref="STDOUT" />
+	</root>
+
+	<logger  level="WARN"    name="ch.qos" />
+	<logger  level="WARN"    name="org.hibernate.orm.connections" />
+	<logger  level="INFO"    name="org.hibernate" />
+
+
+	<logger  level="DEBUG"    name="com.andy" />
+	<logger  level="DEBUG"    name="com.dtxytech" />
+
+
+</configuration>
+

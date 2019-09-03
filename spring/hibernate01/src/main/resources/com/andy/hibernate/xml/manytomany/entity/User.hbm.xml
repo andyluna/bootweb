@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.andy.hibernate.xml.manytomany.entity">
+    <class name="User" table="T_XML_USER">
+        <!-- 主键 -->
+        <id name="id" column="id">
+            <generator class="native"></generator>
+        </id>
+        <!-- 其他属性 -->
+        <property name="name"   column="NAME"></property>
+        <property name="createDate"  column="CREATE_DATE"></property>
+        <!-- 多对一配置 -->
+        <set name="roles" table="T_XML_USER_ROLE" cascade="all">
+            <key column="USER_ID"></key><!-- 当前方在中间表的外键 -->
+            <many-to-many class="Role" column="ROLE_ID" order-by="id asc"></many-to-many> 			<!-- column:对方在中间表的外键 -->
+        </set>
+    </class>
+
+
+</hibernate-mapping>

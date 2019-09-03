@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.andy.hibernate.xml.onetomany.entity">
+    <class name="Customer" table="t_xml_customer">
+        <!-- 主键 -->
+        <id name="id" column="c_id">
+            <generator class="native"></generator>
+        </id>
+        <!-- 其他属性 -->
+        <property name="name"   column="c_name"></property>
+        <property name="gender" column="c_gender"></property>
+        <property name="age"    column="c_age"></property>
+        <property name="level"  column="c_level"></property>
+        <property name="createDate"  column="c_createDate"></property>
+        <!-- 一对多配置 -->
+        <set name="orders" cascade="all"  inverse="true" >
+            <key column="c_customer_id"></key>
+            <one-to-many class="Order" />
+        </set>
+    </class>
+
+
+</hibernate-mapping>

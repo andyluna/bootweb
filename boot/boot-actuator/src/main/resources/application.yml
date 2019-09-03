@@ -1,0 +1,48 @@
+
+
+server.port: 8080
+
+
+
+info:
+    app:
+        groupId:     @project.groupId@
+        artifactId:  @project.artifactId@
+        version:     @project.version@
+        encoding:    @project.build.sourceEncoding@
+        java.source: @project.build.sourceEncoding@
+        java.version: @java.version@
+    head: this is my head
+    body: this is my Body
+
+myendpoint:
+    id: hello
+    name: xiangdan
+    context: zuozuo
+
+
+management:
+    endpoints:
+        web:
+            exposure:
+                include: "*"
+            base-path: "/actuator"
+
+    endpoint:
+        shutdown:
+            enabled: false
+        health:
+            status:
+                order: FATAL, DOWN, OUT_OF_SERVICE, UNKNOWN, UP
+            defaults:
+                enabled: true #在适当情况下，以下HealthIndicators可由Spring Boot自动配置：
+            enabled: true
+            show-details: always
+            cache:
+                time-to-live: 60000ms
+spring:
+    application:
+        name: myboot-actuator
+    profiles:
+        active: default,abc
+        include: andy,zuozuo,xiangdan
