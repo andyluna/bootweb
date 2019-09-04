@@ -18,7 +18,8 @@ public class QueryDslConfig {
 
     @Bean
     @ConditionalOnMissingBean
-    public JPAQueryFactory jpaQueryFactory(EntityManager entityManager){
+    public JPAQueryFactory jpaQueryFactory
+            (EntityManager entityManager){
         return new JPAQueryFactory(entityManager);
     }
 

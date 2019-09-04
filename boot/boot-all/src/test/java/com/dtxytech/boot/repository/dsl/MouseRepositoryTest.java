@@ -74,8 +74,8 @@ public class MouseRepositoryTest {
         Mouse res = jpaQueryFactory
                         .selectFrom(mouse)
                         .where(
-                                mouse.name.eq("滚球鼠标3"),
-                                mouse.brand.eq("xiaomi")
+                                mouse.name.eq("有限鼠标61"),
+                                mouse.brand.eq("lenovo")
                         )
                         .fetchOne();
         log.debug("query by dsltestFindOne 查询成功:{} ",res);
@@ -201,7 +201,8 @@ public class MouseRepositoryTest {
         String name="滚球鼠标%";
         String brand="xiaomi";
         List<Mouse> mouseList = (List<Mouse>) mouseRepository.findAll(
-                mouse.name.like(name).and(mouse.brand.eq(brand))
+                mouse.name.like(name)
+                        .and(mouse.brand.eq(brand))
                 ,mouse.id.asc()
         );
 

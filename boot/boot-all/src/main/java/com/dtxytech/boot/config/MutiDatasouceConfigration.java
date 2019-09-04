@@ -1,24 +1,5 @@
 package com.dtxytech.boot.config;
 
-import com.alibaba.druid.pool.DruidDataSource;
-import org.springframework.beans.factory.ObjectProvider;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.autoconfigure.orm.jpa.HibernateProperties;
-import org.springframework.boot.autoconfigure.orm.jpa.JpaProperties;
-import org.springframework.boot.autoconfigure.transaction.TransactionManagerCustomizers;
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
-import org.springframework.orm.jpa.JpaTransactionManager;
-import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
-import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.transaction.jta.JtaTransactionManager;
-
-import javax.sql.DataSource;
-import java.util.Map;
-
 /**
  * @name : springstudy  com.andy.maven.config.${CLASS_NAME}
  * @desc :
@@ -58,7 +39,7 @@ import java.util.Map;
  bootstrapMode = BootstrapMode.LAZY
  )
  */
-@Configuration
+//@Configuration
 public class MutiDatasouceConfigration {
 
 
@@ -70,46 +51,46 @@ public class MutiDatasouceConfigration {
 //			transactionManagerRef="transactionManager",
 //			repositoryFactoryBeanClass=JpaRepositoryFactoryBean.class,
 //			basePackages= { "com.dtxytech.boot" }) //设置Repository所在位置
-	public static class PrimaryDataSourceConfig extends AbstractMutiDataSourceConfig {
-
-		public PrimaryDataSourceConfig(JpaProperties jpaProperties,
-		                               HibernateProperties hibernateProperties,
-		                               ObjectProvider<JtaTransactionManager> jtaTransactionManager,
-		                               ObjectProvider<TransactionManagerCustomizers> transactionManagerCustomizers) {
-			super(jpaProperties, hibernateProperties, jtaTransactionManager, transactionManagerCustomizers);
-		}
-
-		@Bean
-		@Primary
-		@ConfigurationProperties(prefix="spring.datasource")
-		public DataSource dataSource(){
-			return new DruidDataSource();
-		}
-
-
-		@Bean
-		@Primary
-		public LocalContainerEntityManagerFactoryBean entityManagerFactory(
-				@Qualifier("dataSource") DataSource dataSource,
-				EntityManagerFactoryBuilder factoryBuilder) {
-			Map<String, Object> vendorProperties = getVendorProperties();
-			return factoryBuilder
-					.dataSource(dataSource)
-					.packages(getPackagesToScan())
-					.packages("com.dtxytech.boot.entity")
-					.properties(vendorProperties)
-					.mappingResources(getMappingResources())
-					.jta(isJta())
-					.persistenceUnit("entityManagerFactory")
-					.build();
-		}
-
-		@Bean
-		@Primary
-		public PlatformTransactionManager transactionManager(@Qualifier("dataSource") DataSource dataSource,
-		                                                     EntityManagerFactoryBuilder builder) {
-			return new JpaTransactionManager(entityManagerFactory(dataSource,builder).getObject());
-		}
+//	public static class PrimaryDataSourceConfig extends AbstractMutiDataSourceConfig {
+//
+//		public PrimaryDataSourceConfig(JpaProperties jpaProperties,
+//		                               HibernateProperties hibernateProperties,
+//		                               ObjectProvider<JtaTransactionManager> jtaTransactionManager,
+//		                               ObjectProvider<TransactionManagerCustomizers> transactionManagerCustomizers) {
+//			super(jpaProperties, hibernateProperties, jtaTransactionManager, transactionManagerCustomizers);
+//		}
+//
+//		@Bean
+//		@Primary
+//		@ConfigurationProperties(prefix="spring.datasource")
+//		public DataSource dataSource(){
+//			return new DruidDataSource();
+//		}
+//
+//
+//		@Bean
+//		@Primary
+//		public LocalContainerEntityManagerFactoryBean entityManagerFactory(
+//				@Qualifier("dataSource") DataSource dataSource,
+//				EntityManagerFactoryBuilder factoryBuilder) {
+//			Map<String, Object> vendorProperties = getVendorProperties();
+//			return factoryBuilder
+//					.dataSource(dataSource)
+//					.packages(getPackagesToScan())
+//					.packages("com.dtxytech.boot.entity")
+//					.properties(vendorProperties)
+//					.mappingResources(getMappingResources())
+//					.jta(isJta())
+//					.persistenceUnit("entityManagerFactory")
+//					.build();
+//		}
+//
+//		@Bean
+//		@Primary
+//		public PlatformTransactionManager transactionManager(@Qualifier("dataSource") DataSource dataSource,
+//		                                                     EntityManagerFactoryBuilder builder) {
+//			return new JpaTransactionManager(entityManagerFactory(dataSource,builder).getObject());
+//		}
 
 
 		//		@Bean
@@ -149,7 +130,7 @@ public class MutiDatasouceConfigration {
 //			return factory;
 //		}
 
-	}
+//	}
 	/**默认数据源配置结束**/
 
 

@@ -40,7 +40,7 @@
             <version>1.0.0</version>
         </dependency>
 
-        <!---dsl查询依赖的jar包-->
+        <!---dsl查询依赖的jar包      -->
         <dependency>
             <groupId>com.querydsl</groupId>
             <artifactId>querydsl-jpa</artifactId>
@@ -51,14 +51,15 @@
             <scope>provided</scope>
         </dependency>
 
+
     </dependencies>
 
 
 
     <build>
-        <!--QueryDSL支持-->
         <plugins>
-            <!--因为是类型安全的，所以还需要加上Maven APT plugin，使用 APT 自动生成一些类:-->
+             <!--因为是类型安全的，所以还需要加上Maven APT plugin，使用 APT 自动生成一些类:-->
+            <!--QueryDSL支持   -->
             <plugin>
                 <groupId>com.mysema.maven</groupId>
                 <artifactId>apt-maven-plugin</artifactId>
@@ -76,6 +77,11 @@
                     </execution>
                 </executions>
             </plugin>
+
+
+
+
+
         </plugins>
     </build>
 

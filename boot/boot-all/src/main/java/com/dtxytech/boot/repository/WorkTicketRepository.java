@@ -97,12 +97,14 @@ public interface WorkTicketRepository  {
      * @param content
      * @return 返回类型如果是集合
      *   接收类型  默认是 List<T>
-     *       也支持  Set ArrayList LinkedList Collection Stream Slice
+     *       也支持  Set ArrayList LinkedList
+     *       Collection Stream Slice
      */
     List<WorkTicket> findTop3ByContentStartingWith(String content);
 
     /**
-     * 6.返回类型 如果是 Stream 和 Slice 则对数据的使用操作必须在一个事务里面完成
+     * 6.返回类型 如果是 Stream 和 Slice
+     * 则对数据的使用操作必须在一个事务里面完成
      * @param content
      * @return
      */
@@ -155,7 +157,8 @@ public interface WorkTicketRepository  {
      * @param mainId
      * @return
      */
-    @Query("from WorkTicket where content like ?1 and mainId like ?2 order by id asc ")
+    @Query("from WorkTicket where content like ?1 " +
+            " and mainId like ?2 order by id asc ")
     List<WorkTicket> findByHql1(String content,String mainId );
 
     /**
@@ -165,18 +168,20 @@ public interface WorkTicketRepository  {
      * @param mainId
      * @return
      */
-    @Query("from WorkTicket where content like :content and mainId like :mainId order by id asc ")
-    List<WorkTicket> findByHql2(@Param("content") String content, @Param("mainId") String mainId );
-
-
+    @Query("from WorkTicket where content like :content " +
+            " and mainId like :mainId order by id asc ")
+    List<WorkTicket> findByHql2(@Param("content") String content,
+                                @Param("mainId") String mainId );
     /**
      * 13.查询 返回部分字段 List<Object> 实际上是一个List<Object[]>数组
      * @param content
      * @param mainId
      * @return
      */
-    @Query("select id,content,mainId from WorkTicket where content like :content and mainId like :mainId order by id asc")
-    List<Object> findByHql3(@Param("content") String content, @Param("mainId") String mainId );
+    @Query("select id,content,mainId from WorkTicket " +
+            " where content like :content and mainId like :mainId order by id asc")
+    List<Object> findByHql3(@Param("content") String content,
+                            @Param("mainId") String mainId );
 
 
     /**
@@ -185,8 +190,10 @@ public interface WorkTicketRepository  {
      * @param mainId
      * @return
      */
-    @Query("select id,content,mainId from WorkTicket where content like :content and mainId like :mainId order by id asc")
-    List<Object[]> findByHql4(@Param("content") String content, @Param("mainId") String mainId );
+    @Query("select id,content,mainId from WorkTicket " +
+            "where content like :content and mainId like :mainId order by id asc")
+    List<Object[]> findByHql4(@Param("content") String content,
+                              @Param("mainId") String mainId );
 
     /**
      * 15.查询 返回部分字段 如果返回的字段与 实体类中的一个构造方法一一对应时
@@ -196,11 +203,14 @@ public interface WorkTicketRepository  {
      * @return
      */
     @Query("select new com.dtxytech.boot.entity.WorkTicket(id,content,mainId)" +
-            " from WorkTicket where content like :content and mainId like :mainId order by id asc")
+            " from WorkTicket where content like :content " +
+            " and mainId like :mainId order by id asc")
     List<WorkTicket> findByHql5(@Param("content") String content, @Param("mainId") String mainId );
 
     /**
-     * 16.查询部分字段  返回Map  不加任何修饰 这个map是 org.springframework.data.jpa.repository.query.AbstractJpaQuery.TupleConverter.TupleBackedMap
+     * 16.查询部分字段  返回Map  不加任何修饰 这个map是
+     * org.springframework.data.jpa.repository.query.AbstractJpaQuery.
+     * TupleConverter.TupleBackedMap
      * 类似于数组的MAP ，map中所有key都为空 ，只能通过map.entrySet()来遍历取值  这样取值也不方便
      * @param content
      * @param mainId
@@ -216,7 +226,8 @@ public interface WorkTicketRepository  {
      * @param mainId
      * @return
      */
-    @Query("select  new map(id,content,mainId) from WorkTicket where content like :content and mainId like :mainId order by id asc")
+    @Query("select  new map(id,content,mainId) from WorkTicket " +
+            "where content like :content and mainId like :mainId order by id asc")
     List<Map<Integer,Object>> findByHql17(@Param("content") String content, @Param("mainId") String mainId );
 
 
@@ -259,9 +270,9 @@ public interface WorkTicketRepository  {
         String getId();
         @Value("#{target.content + ' ' + target.mainId}")
         String getContent();
-
         default String getMainId(){
-            return getId().concat(" 这是链接符号 ").concat(getContent());
+            return getId().concat(" 这是链接符号 ")
+                    .concat(getContent());
         }
     }
 

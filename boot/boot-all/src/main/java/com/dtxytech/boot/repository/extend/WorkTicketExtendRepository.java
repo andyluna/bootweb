@@ -11,7 +11,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
  *          不过这是一个干净接口 里面没有任何现成的方法可以调用
  *          主要用来掩饰spring-data-jpa 规范定义的高级查询
  */
-public interface WorkTicketExtendRepository extends JpaRepository<WorkTicket,String>,MyWorkTicketExtendsRepository {
+public interface WorkTicketExtendRepository extends
+        JpaRepository<WorkTicket,String>,
+        MyWorkTicketExtendsRepository {
 
 
 }

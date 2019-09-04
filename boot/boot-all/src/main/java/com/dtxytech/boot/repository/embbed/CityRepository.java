@@ -15,7 +15,8 @@ public interface CityRepository extends JpaRepository<City,Integer> {
     //1.根据城市名字查询
     City findCityByName(String cityName);
 
-    //2. 多层路径解析 spring 会解析成 zc.zipName去查询   支持多层嵌入的写法
+    //2. 多层路径解析 spring 会解析成
+    // zc.zipName去查询   支持多层嵌入的写法
     // 为什么会这样 因为没有歧义
     City findByZcZipName(String zipName);
 
@@ -29,6 +30,9 @@ public interface CityRepository extends JpaRepository<City,Integer> {
     // 结论：如果含有下滑线 spring会优先理解成 这是一个 嵌入式类 根据嵌入类里的属性来查询
     //      spring 官方不介意 实体类 的属性含有下划线
     City findByZc_ZipCode(String zipCode);
+
+
+
 
     //5.之前使用内嵌属性查询
     City findByCs(CitySymbol cs);

@@ -20,6 +20,6 @@ import java.util.Date;
 public class BaseData {
     private String createUserId;
     private String createUserName;
-    private Date    createDate;
+    private Date   createDate;
 
 }

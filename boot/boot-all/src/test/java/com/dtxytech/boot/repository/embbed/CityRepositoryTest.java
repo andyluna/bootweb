@@ -75,7 +75,8 @@ public class CityRepositoryTest {
     }
 
     //3. 演示有歧义的方法
-    //  这个方法 到底是用来根据直接属性 zcZipCode还是根据 zc类里面的 zipCode属性来查询
+    //  这个方法 到底是用来根据直接属性 zcZipCode还是根据
+    //  zc类里面的 zipCode属性来查询
     // 结论：优先根据直接属性查询
     @Test
     public void  findByZcZipCode(){

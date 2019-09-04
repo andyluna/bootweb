@@ -10,7 +10,9 @@ import org.springframework.data.querydsl.QuerydslPredicateExecutor;
  * @TIME : 2019/9/3 九月 17:02
  * @DESC :  测试 QueryDsl
  */
-public interface MouseRepository extends MyBaseRepository<Mouse,Integer>, QuerydslPredicateExecutor<Mouse> {
+public interface MouseRepository extends
+        MyBaseRepository<Mouse,Integer> ,
+        QuerydslPredicateExecutor<Mouse> {
 
 
 }

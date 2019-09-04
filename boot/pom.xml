@@ -16,6 +16,7 @@
         <module>boot-socket</module>
         <module>boot-cache</module>
         <module>boot-jpa</module>
+        <module>boot-test</module>
     </modules>
     <groupId>com.andy.boot</groupId>
     <artifactId>boot</artifactId>

@@ -4,6 +4,7 @@ import com.dtxytech.boot.entity.WorkTicket;
 import com.dtxytech.boot.repository.extend.MyWorkTicketExtendsRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.Session;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -16,6 +17,7 @@ import javax.persistence.Query;
  * @DESC : 自定义扩展实现类   名字必须以Impl结尾
  */
 @Slf4j
+@Component
 public class MyWorkTicketExtendsRepositoryImpl implements MyWorkTicketExtendsRepository {
     //自动注入 EntityManager
     //EntityManager权利很大 标准JPA的所有操作都是通过这个类来执行的

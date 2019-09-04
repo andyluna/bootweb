@@ -17,6 +17,10 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -120,14 +124,14 @@ public class EmployeeServiceTest {
 
     @Test
     public void deleteById() {
-        employeeService.deleteById(2);
+        employeeService.deleteById(122);
     }
 
     /**********************  3.修改 ************************************************/
 
     @Test
     public void testUpdate() {
-        Optional<Employee> byId = employeeService.findById(2);
+        Optional<Employee> byId = employeeService.findById(225);
         if(byId.isPresent()){
             Employee employee = byId.get();
             employee.setLastName("修改一下");
@@ -140,7 +144,7 @@ public class EmployeeServiceTest {
 
     @Test
     public void findById() {
-        Optional<Employee> optEmp = employeeService.findById(135);
+        Optional<Employee> optEmp = employeeService.findById(235);
         Employee emp = optEmp.orElse(null);
         log.debug("findById返回结果：{}",emp);
     }
@@ -150,8 +154,10 @@ public class EmployeeServiceTest {
         Employee employee = new Employee();
         employee.setId(123);
         employee.setFirstName("xiang");
+
         ExampleMatcher matcher = ExampleMatcher.matchingAll();//定义匹配器 这里还可以自定义
         Example<Employee> example = Example.of(employee, matcher);//组装查询条件
+
         Optional<Employee> optEmp = employeeService.findOne(example);
         Employee emp = optEmp.orElse(null);
         log.debug("findById返回结果：{}",emp);
@@ -161,7 +167,7 @@ public class EmployeeServiceTest {
     public void findOneBySpec() {
         Specification<Employee> spec = (Specification<Employee>) (root, query, cb) ->
             cb.and(
-                    cb.equal(root.get("id"),12),
+                    cb.equal(root.get("id"),225),
                     cb.like(root.get("firstName"),"xiang%")
             );
         Optional<Employee> optEmp = employeeService.findOne(spec);
@@ -169,10 +175,10 @@ public class EmployeeServiceTest {
         log.debug("findById返回结果：{}",emp);
     }
 
-
+    //这个方法等会再细查
     @Test
     public void getOne() {
-        Employee emp = employeeService.getOne(12);
+        Employee emp = employeeService.getOne(256);
         log.debug("getOne返回结果：{}",emp);
     }
 
@@ -252,7 +258,10 @@ public class EmployeeServiceTest {
         employee.setIdCard("4325241");
         Example<Employee> example = SpecificationUtils.findAllExample(employee);
 
-        Sort sort = Sort.by(Sort.Order.desc("firstName"),Sort.Order.asc("idCard"));
+        Sort sort = Sort.by(
+                Sort.Order.desc("firstName"),
+                Sort.Order.asc("idCard")
+        );
 
         List<Employee> all = employeeService.findAll(example,sort);
         log.debug("带参数参数 example and Sort 查询 数据总数:{} ",all.size());
@@ -314,15 +323,27 @@ public class EmployeeServiceTest {
 
     @Test
     public void testFindAllBySpecAndSort() {
-        Employee employee = new Employee();
-        employee.setFirstName("xiang");
-        employee.setIdCard("4325241");
-        Specification<Employee> spec = SpecificationUtils.findAllSpecification(employee);
+//        Employee employee = new Employee();
+//        employee.setFirstName("xiang");
+//        employee.setIdCard("4325241");
+//        Specification<Employee> spec = SpecificationUtils.findAllSpecification(employee);
 
+
+        Specification<Employee> spec  = new  Specification<Employee>(){
+            @Override
+            public Predicate toPredicate(Root<Employee> root,
+                                         CriteriaQuery<?> query,
+                                         CriteriaBuilder cb) {
+                Predicate id = cb.equal(root.get("id"), 234);
+                Predicate name = cb.like(root.get("firstName"), "xiang%");
+                Predicate abc = cb.and(id,name );
+                Predicate postCode = cb.like(root.get("postCode"), "43000%");
+                abc = cb.or(abc, postCode);
+                return abc;
+            }
+        };
         Sort sort = Sort.by(Sort.Order.desc("firstName"),Sort.Order.asc("idCard"));
         Pageable pageable = PageRequest.of(0,5,sort);
-
-
         List<Employee> all = employeeService.findAll(spec,sort);
         log.debug("带参数参数 testFindAllBySpecAndSort 查询 数据总数:{} ",all.size());
         all.forEach(s->log.debug("{}",s));
