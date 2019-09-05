@@ -65,6 +65,7 @@ public class Equepment {
     @PostPersist
     public void mypostPersist(){
         log.debug("mypostPersist 触发了哦");
+        //throw new RuntimeException("异常了啊");
     }
     @PostRemove
     public void mypostRemove(){
@@ -80,7 +81,6 @@ public class Equepment {
     public void myprePersist(){
         log.debug("myprePersist 触发了哦----pre 这里设置一下 createDate 和updateDate");
         createDate = updateDate = new Date();
-
     }
     @PreRemove
     public void mypreRemove(){
